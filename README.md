@@ -1,1 +1,1 @@
-# Crawler para obtenção de informações sobre pacientes da COVID19
+# Crawler de informações sobre a COVID19 no Brasil
