@@ -1,6 +1,11 @@
 name: UpdateData
 
-on: push
+on: 
+  push: 
+    branches: 
+      - master
+  schedule:
+    - cron: "0 */12 * * *"
 
 jobs:
   data-update:
