@@ -1,4 +1,4 @@
-name: UpdateData
+name: Data Update
 
 on: 
   push: 
