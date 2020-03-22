@@ -72,7 +72,7 @@ OUTPUT_DIR="$(realpath ../output)"
 SCRIPT_NAME="$(basename "${0}")"
 OUTPUT_FILE_PREFIX="${OUTPUT_DIR}/${SCRIPT_NAME%.*}"
 
-if [[ ! -f "${OUTPUT_FILE_PREFIX}-$(date '+%Y-%m-%d').tsv" ]]; then
+if [[ ! -f "${OUTPUT_FILE_PREFIX}-$(date -u '+%Y-%m-%d').tsv" ]]; then
     mkdir -p "${OUTPUT_DIR}"
     PDF_FILES="$(
         cat "$(fetch_daily "${INDEX_URL}")" |
@@ -93,7 +93,7 @@ if [[ ! -f "${OUTPUT_FILE_PREFIX}-$(date '+%Y-%m-%d').tsv" ]]; then
         done <<<"${PDF_FILES}"
     ) >"${OUTPUT_FILE_PREFIX}-latest.tsv"
 
-    cp "${OUTPUT_FILE_PREFIX}-latest.tsv" "${OUTPUT_FILE_PREFIX}-$(date '+%Y-%m-%d').tsv"
+    cp "${OUTPUT_FILE_PREFIX}-latest.tsv" "${OUTPUT_FILE_PREFIX}-$(date -u '+%Y-%m-%d').tsv"
 fi
 
 cat "${OUTPUT_FILE_PREFIX}-latest.tsv"

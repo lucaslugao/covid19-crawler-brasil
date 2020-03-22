@@ -1,0 +1,32 @@
+name: Data Update
+
+on: 
+  push: 
+    branches: 
+      - master
+  schedule:
+    - cron: "0 */12 * * *"
+
+jobs:
+  data-update:
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Install curl and pdftohtml
+      run: sudo apt-get install curl pdftohtml
+
+    - name: Cache Data
+      id: cache-data
+      uses: actions/cache@v1
+      with:
+        path: ./src/.cache
+        key: data-cache
+
+    - name: Update saude-sp-gov-br data
+      run: bash src/saude-sp-gov-br.sh
+
+    - uses: stefanzweifel/git-auto-commit-action@v4.1.1
+      with:
+        commit_message: Commit updates to repository

@@ -19,7 +19,7 @@ function fetch_daily(){
     echo "Fetching > ${1}" >&2
     local cached_file="${CACHE_DIR}/$(md5 ${1})"
     
-    [ "$(stat -c %y "${cached_file}" 2>/dev/null | awk '{print $1}')" != "$(date '+%Y-%m-%d')" ] &&
+    [ "$(stat -c %y "${cached_file}" 2>/dev/null | awk '{print $1}')" != "$(date -u '+%Y-%m-%d')" ] &&
         curl -s "${1}" > "${cached_file}"
     
     echo "${cached_file}"
