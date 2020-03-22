@@ -22,7 +22,8 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ./src/.cache
-        key: data-cache
+        key: data-cache-${{ github.sha }}
+        restore-keys: data-cache-
 
     - name: Update saude-sp-gov-br data
       run: bash src/saude-sp-gov-br.sh
